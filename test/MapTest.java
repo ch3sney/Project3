@@ -9,7 +9,7 @@ import components.map.Map.Pair;
  * JUnit test fixture for {@code Map<String, String>}'s constructor and kernel
  * methods.
  *
- * @author Put your name here
+ * @author Luke Chesney / Ian Shemo
  *
  */
 public abstract class MapTest {
@@ -82,10 +82,10 @@ public abstract class MapTest {
         return map;
     }
 
-    // TODO - add test cases for constructor, add, remove, removeAny, value,
-    // hasKey, and size
-
-    @Test(timeout = 500)
+    /**
+     * Test of constructor with no arguments.
+     */
+    @Test
     public final void testConstructorNoArgs() {
         /*
          * Set up variables
@@ -98,7 +98,10 @@ public abstract class MapTest {
         assertEquals(mExpected, m);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of constructor.
+     */
+    @Test
     public final void testConstructor() {
         /*
          * Set up variables
@@ -113,7 +116,10 @@ public abstract class MapTest {
         assertEquals(mExpected, m);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of add method with empty map.
+     */
+    @Test
     public final void testAddEmpty() {
         /*
          * Set up variables
@@ -130,7 +136,10 @@ public abstract class MapTest {
         assertEquals(mExpected, m);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of add method with non-empty map.
+     */
+    @Test
     public final void testAdd() {
         /*
          * Set up variables
@@ -149,7 +158,10 @@ public abstract class MapTest {
         assertEquals(mExpected, m);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of remove method leaving empty map.
+     */
+    @Test
     public final void testRemoveLeavingEmpty() {
         /*
          * Set up variables
@@ -168,7 +180,10 @@ public abstract class MapTest {
         assertEquals(x.value(), "three");
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of remove method leaving non-empty map.
+     */
+    @Test
     public final void testRemove() {
         /*
          * Set up variables
@@ -189,7 +204,32 @@ public abstract class MapTest {
         assertEquals("two", x.value());
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of removeAny method leaving empty map.
+     */
+    @Test
+    public final void testRemoveAnyLeavingEmpty() {
+        /*
+         * Set up variables
+         */
+        Map<String, String> m = this.createFromArgsTest("red", "one");
+        Map<String, String> mExpected = this.createFromArgsRef("red", "one");
+        /*
+         * Call method under test
+         */
+        Pair<String, String> x = m.removeAny();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(true, mExpected.hasKey(x.key()));
+        mExpected.remove(x.key());
+        assertEquals(mExpected, m);
+    }
+
+    /**
+     * Test of removeAny method leaving non-empty map.
+     */
+    @Test
     public final void testRemoveAny() {
         /*
          * Set up variables
@@ -210,26 +250,10 @@ public abstract class MapTest {
         assertEquals(mExpected, m);
     }
 
-    @Test(timeout = 500)
-    public final void testRemoveAnyLeavingEmpty() {
-        /*
-         * Set up variables
-         */
-        Map<String, String> m = this.createFromArgsTest("red", "one");
-        Map<String, String> mExpected = this.createFromArgsRef("red", "one");
-        /*
-         * Call method under test
-         */
-        Pair<String, String> x = m.removeAny();
-        /*
-         * Assert that values of variables match expectations
-         */
-        assertEquals(true, mExpected.hasKey(x.key()));
-        mExpected.remove(x.key());
-        assertEquals(mExpected, m);
-    }
-
-    @Test(timeout = 500)
+    /**
+     * Test of value method.
+     */
+    @Test
     public final void testValue() {
         /*
          * Set up variables
@@ -249,7 +273,10 @@ public abstract class MapTest {
         assertEquals("two", x);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of hasKey method with true result.
+     */
+    @Test
     public final void testHasKeyTrue() {
         /*
          * Set up variables
@@ -269,7 +296,10 @@ public abstract class MapTest {
         assertEquals(true, x);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of hasKey method with false result.
+     */
+    @Test
     public final void testHasKeyFalse() {
         /*
          * Set up variables
@@ -289,7 +319,30 @@ public abstract class MapTest {
         assertEquals(false, x);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of hasKey method with empty map.
+     */
+    public final void testHasKeyEmpty() {
+        /*
+         * Set up variables
+         */
+        Map<String, String> m = this.createFromArgsTest();
+        Map<String, String> mExpected = this.createFromArgsRef();
+        /*
+         * Call method under test
+         */
+        boolean x = m.hasKey("scarlet");
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(mExpected, m);
+        assertEquals(false, x);
+    }
+
+    /**
+     * Test of size method with empty map.
+     */
+    @Test
     public final void testSizeEmpty() {
         /*
          * Set up variables
@@ -307,7 +360,10 @@ public abstract class MapTest {
         assertEquals(0, x);
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test of size method.
+     */
+    @Test
     public final void testSize() {
         /*
          * Set up variables
