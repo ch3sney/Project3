@@ -112,7 +112,6 @@ public class Map4<K, V> extends MapSecondary<K, V> {
             this.hashTable[i] = new Map1L<K, V>();
         }
         this.size = 0;
-
     }
 
     /*
@@ -230,7 +229,6 @@ public class Map4<K, V> extends MapSecondary<K, V> {
 
         int bucket = mod(key.hashCode(), this.hashTable.length);
         return this.hashTable[bucket].value(key);
-
     }
 
     @Override
